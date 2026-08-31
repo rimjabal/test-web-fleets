@@ -1,12 +1,12 @@
 export const FLEET_COLORS = [
-  "#4d9de0", // bleu (sélectionné par défaut)
-  "#2dd4bf", // turquoise
-  "#3ddc84", // vert
-  "#f7c948", // jaune
-  "#f68a3c", // orange
-  "#ef5350", // rouge
-  "#ec5fc0", // rose
-  "#a05ef0", // violet
+  "#409BEC", // bleu (sélectionné par défaut)
+  "#7CD7F5", // bleu clair
+  "#5DC677", // vert
+  "#FAC863", // jaune
+  "#F28029", // orange
+  "#EB5555", // rouge
+  "#E262DC", // rose
+  "#AE32E3", // violet
 ] as const;
 
 export type FleetColor = (typeof FLEET_COLORS)[number];
