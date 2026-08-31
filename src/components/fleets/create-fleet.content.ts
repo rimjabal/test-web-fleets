@@ -23,6 +23,8 @@ const createFleetContent = {
     create: t({ en: "Create a fleet", fr: "Créer la flotte" }),
     titleFallback: t({ en: "Title", fr: "Titre" }),
     descFallback: t({ en: "Description", fr: "Description" }),
+        editHeading: t({ en: "Edit your fleet", fr: "Modifiez votre flotte" }),
+    save: t({ en: "Save changes", fr: "Enregistrer" }),
   },
 } satisfies Dictionary;
 

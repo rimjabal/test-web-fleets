@@ -8,6 +8,9 @@ const fleetsPageContent = {
     companies: t({ en: "companies", fr: "entreprises" }),
     loading: t({ en: "Loading…", fr: "Chargement…" }),
     error: t({ en: "Failed to load.", fr: "Erreur de chargement." }),
+        delete: t({ en: "Delete", fr: "Supprimer" }),
+    options: t({ en: "Options", fr: "Options" }),
+       edit: t({ en: "Edit", fr: "Modifier" }),
   },
 } satisfies Dictionary;
 
