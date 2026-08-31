@@ -9,7 +9,7 @@ export const createFleetSchema = z.object({
     .min(1, "Le titre est requis")
     .max(80, "80 caractères maximum"),
   description: z.string().trim().max(280, "280 caractères maximum").optional(),
-    color: z
+  color: z
     .string()
     .refine((value) => (FLEET_COLORS as readonly string[]).includes(value), {
       message: "Choisis une couleur de la palette",
@@ -17,3 +17,8 @@ export const createFleetSchema = z.object({
 });
 
 export type CreateFleetInput = z.infer<typeof createFleetSchema>;
+
+// mise à jour = tous les champs deviennent optionnels (modification partielle)
+export const updateFleetSchema = createFleetSchema.partial();
+
+export type UpdateFleetInput = z.infer<typeof updateFleetSchema>;
