@@ -45,7 +45,7 @@ export function FleetCard({
       }}
     >
       {/* menu ... */}
-      <div ref={menuRef} className="absolute right-2 top-2 z-10">
+      <div ref={menuRef} className="absolute right-2 top-2 z-40">
         <button
           type="button"
           aria-label={optionsLabel}
@@ -60,7 +60,7 @@ export function FleetCard({
         </button>
 
         {menuOpen && (
-          <div className="absolute right-0 top-9 z-20 min-w-36 overflow-hidden rounded-[10px] bg-[#1e1832] py-1 shadow-xl ring-1 ring-white/10">
+          <div className="absolute right-0 top-9 z-50 min-w-36 overflow-hidden rounded-[10px] bg-[#1e1832] py-1 shadow-xl ring-1 ring-white/10">
             {/* Modifier */}
             <button
               type="button"
