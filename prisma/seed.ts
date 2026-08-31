@@ -3,8 +3,8 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const COLORS = [
-  "#5e4fb0", "#4361ee", "#18a4b9", "#29a844",
-  "#ffc20a", "#f97316", "#dc3848", "#d6409f",
+  "#409BEC", "#7CD7F5", "#5DC677", "#FAC863",
+  "#F28029", "#EB5555", "#E262DC", "#AE32E3",
 ];
 
 const TITLES = [

@@ -23,7 +23,9 @@ const LocaleLayout: NextLayoutIntlayer = async ({ children, params }) => {
       className={`${inter.variable} h-full antialiased`}
       data-glassmorphism="dark"
     >
-      <body className="min-h-full flex flex-col">
+      <body
+  className="min-h-full flex flex-col"
+  style={{ backgroundColor: "#272149" }}>
         <IntlayerProvider locale={locale}>
           <QueryProvider>
             <DynamicBackground />
