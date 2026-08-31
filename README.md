@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Histia — Feature « Flottes »
 
-## Getting Started
+Cas pratique : implémentation d'un système de **flottes** (cartes rangées dans un répertoire), avec création, affichage, édition et suppression.
 
-First, run the development server:
+## ✨ Fonctionnalités
+
+- **CRUD complet** : créer, lister, modifier et supprimer des flottes
+- **Overlay de création/édition** unifié avec **aperçu en temps réel** (le titre, la couleur et la description se reflètent instantanément sur la carte) et **effet tilt** 3D
+- **Infinite scroll** (pagination par curseur)
+- **Internationalisation FR / EN** via l'URL (`/fr`, `/en`), sans sélecteur de langue
+- **Mise à jour instantanée** de la grille après chaque action, sans rechargement
+- Responsive (optimisé pour 1920×1080 et 1400×900)
+
+## 🛠 Stack
+
+- **Next.js 16** (App Router)
+- **Prisma 6** + **PostgreSQL** (Neon)
+- **React Hook Form** + **Zod** (formulaires & validation)
+- **TanStack Query** (data fetching, cache, mutations)
+- **intlayer** (i18n)
+- **framer-motion** (effet tilt)
+- **Tailwind CSS**
+
+## 🚀 Installation
+
+Prérequis : [Bun](https://bun.sh) et une base PostgreSQL.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# 1. Installer les dépendances
+bun install
+
+# 2. Configurer la base de données
+cp .env.example .env
+# → renseigner DATABASE_URL dans .env
+
+# 3. Appliquer le schéma
+bunx prisma migrate dev
+
+# 4. (Optionnel) Insérer des données de démo
+bun prisma/seed.ts
+
+# 5. Lancer le serveur de développement
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir **http://localhost:3000/fr/fleets** (ou `/en/fleets`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Structure
+src/
+├── app/
+│ ├── [locale]/fleets/ # page répertoire (grille + infinite scroll)
+│ └── api/fleets/ # routes API (GET, POST, PATCH, DELETE)
+├── components/
+│ ├── fleets/ # cartes, overlay de création/édition, preview
+│ ├── modal/ button/ # composants fournis, réutilisés
+│ └── background/ # halo animé
+└── lib/ # Prisma, schémas Zod, appels API, stores
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## 🧩 Choix techniques
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Prisma 6 (stable)** plutôt que la version `8.0.0-rc` du starter : cette RC (« Prisma Next ») abandonne le workflow classique et n'a pas de `@prisma/client` stable. J'ai privilégié une couche de données fiable et documentée.
+- **Routing i18n `prefix-all`** : `/fr/...` et `/en/...` sont deux URLs stables et testables séparément, conformément au brief.
+- **Pagination par curseur** : plus robuste que l'offset pour un infinite scroll (pas de doublons si des données s'ajoutent).
+- **Overlay create/edit unifié** : un seul composant gère création et édition selon qu'une flotte est passée ou non, avec un schéma Zod partagé (`.partial()` pour l'update).
+- **Validation côté serveur ET client** avec le même schéma Zod, pour ne jamais faire confiance au client.
