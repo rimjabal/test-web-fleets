@@ -46,15 +46,9 @@ bun dev
 Ouvrir **http://localhost:3000/fr/fleets** (ou `/en/fleets`).
 
 ## 📁 Structure
-src/
-├── app/
-│ ├── [locale]/fleets/ # page répertoire (grille + infinite scroll)
-│ └── api/fleets/ # routes API (GET, POST, PATCH, DELETE)
-├── components/
-│ ├── fleets/ # cartes, overlay de création/édition, preview
-│ ├── modal/ button/ # composants fournis, réutilisés
-│ └── background/ # halo animé
-└── lib/ # Prisma, schémas Zod, appels API, stores
+<img width="592" height="217" alt="image" src="https://github.com/user-attachments/assets/176a1b92-6f79-4a19-a441-1ad4267f2f75" />
+
+
 
 
 ## 🧩 Choix techniques
